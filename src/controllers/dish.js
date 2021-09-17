@@ -3,10 +3,10 @@ const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
   const data = req.body;
-  await Dish
-    .create(data)    
+  Dish
+    .findOrCreate({where: {name: data.name}})   
     .then((obj) => {
-      res.status(201).json(obj.dataValues)
+      res.status(201).json(obj)
     })
     .catch((error) => {
       errorHandler(res,error)
