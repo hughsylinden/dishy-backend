@@ -1,0 +1,288 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Dishy App",
+    "description": "",
+    "version": "1.0"
+  },
+  "paths": {
+    "/user": {
+      "get": {
+        "tags": ["user"],
+        "description": "Get all users from system",
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "description": "Create new user in system",
+        "summary": "Post new User",       
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/dish": {
+      "get": {
+        "tags": ["dish"],
+        "description": "Get all dishes from system",
+        "summary": "Get all dishes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/dish"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["dish"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dish object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dish"
+            }
+          }
+        ],
+        "description": "Create new dish in system",
+        "summary": "Post new Dish",       
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New dish is created",
+            "schema": {
+              "$ref": "#/definitions/dish"
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": ["user"],
+        "description": "Get all users from system",
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "description": "Create new user in system",
+        "summary": "Post new User",       
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/rating": {
+      "get": {
+        "tags": ["rating"],
+        "description": "Get all ratings from system",
+        "summary": "Get all ratings",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/rating"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["rating"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Rating object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rating"
+            }
+          }
+        ],
+        "description": "Create new rating in system",
+        "summary": "Post new rating",       
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New rating is created",
+            "schema": {
+              "$ref": "#/definitions/rating"
+            }
+          }
+        }
+      }
+    },
+    "/restaurant": {
+      "get": {
+        "tags": ["restaurant"],
+        "description": "Get all restaurants from system",
+        "summary": "Get all restaurants",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/restaurant"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["restaurant"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "restaurant object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/restaurant"
+            }
+          }
+        ],
+        "description": "Create new restaurant in system",
+        "summary": "Post new restaurant",       
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New restaurant is created",
+            "schema": {
+              "$ref": "#/definitions/restaurant"
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "definitions": {
+    "user": {
+      "required": ["username", "password", "email", "dob"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "autoincrement": true
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"        
+        },
+        "dob": {
+          "type": "string"        
+        }
+      }
+    },
+    "dish": {
+      "required": ["username", "password", "email", "dob"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "autoincrement": true
+        },
+        "type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "rating": {
+      "required": ["rating", "comment", "UserId", "DishId"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "autoincrement": true
+        },
+        "rating": {
+          "type": "integer"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "UserId": {
+          "type": "integer"
+        },
+        "DishId": {
+          "type": "integer"
+        }
+      }
+    },
+    "restaurant": {
+      "required": ["yelp_id", "name", "address"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "autoincrement": true
+        },
+        "yelp_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
