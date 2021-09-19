@@ -1,4 +1,4 @@
-const { Rating } = require('../models');
+const { Rating, Dish, Restaurant } = require('../models');
 const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
@@ -13,6 +13,12 @@ async function create(req, res) {
 
 async function read(req, res) {
   Rating.findAll().then((items) => {
+    res.status(200).json(items);
+  });
+}
+
+async function readAll(req, res) {
+  Rating.findAll({include: [Dish, Restaurant]}).then((items) => {
     res.status(200).json(items);
   });
 }
@@ -70,4 +76,4 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy };
+module.exports = { create, read, readOne, update, destroy, readAll };

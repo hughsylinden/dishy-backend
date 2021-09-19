@@ -6,28 +6,16 @@ module.exports = (connection, DataTypes) => {
       validate: {
         notEmpty: true,
       },
-    },/*
-    name: {
+    },
+    name:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    }, 
+    },
     longitude: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
+      type: DataTypes.DOUBLE,    
     },
     latitude: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        notEmpty: true,
-      }, 
-    },*/
+      type: DataTypes.DOUBLE,
+    },
   };
 
   const RestaurantModel = connection.define('Restaurant', schema, {timestamps: false});

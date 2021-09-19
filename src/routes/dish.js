@@ -4,6 +4,7 @@ const dishRouter = express.Router();
 
 dishRouter.post('/', dishController.create);
 dishRouter.get('/', dishController.read);
+dishRouter.get('/all', dishController.readDishes);
 dishRouter.get('/:id', dishController.readOne);
 dishRouter.get('/:id/ratings', dishController.readDishRatings);
 dishRouter.patch('/:id', dishController.update);

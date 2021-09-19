@@ -4,7 +4,7 @@ const errorHandler = require('../utils/errorHandler')
 async function create(req, res) {
   const data = req.body;
   Restaurant
-  .findOrCreate({where: {yelp_id: data.yelp_id}})
+  .findOrCreate({where: {yelp_id: data.yelp_id, longitude: data.longitude, latitude: data.latitude, name:data.name}})
   .then((obj) => {
     res.status(201).json(obj)
   })
@@ -12,6 +12,12 @@ async function create(req, res) {
     errorHandler(res,error)
   });
 }
+
+async function readAll(req, res) {
+  Restaurant.findAll().then((items) => {
+    res.status(200).json(items);
+  });
+} 
 
 async function read(req, res) {
   Restaurant.findAll().then((items) => {
@@ -105,4 +111,4 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readRestaurantRatings, readByYelpId };
+module.exports = { create, read, readOne, update, destroy, readRestaurantRatings, readByYelpId, readAll };

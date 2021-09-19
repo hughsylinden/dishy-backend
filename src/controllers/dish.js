@@ -1,4 +1,4 @@
-const { Dish, Rating } = require('../models');
+const { Dish, Rating, Restaurant } = require('../models');
 const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
@@ -13,7 +13,19 @@ async function create(req, res) {
     }); 
 }
 
-
+async function readDishes(req, res) {
+  Dish
+    .findAll({
+      include: Rating, Restaurant,
+      where: Rating.RestaurantId==Restaurant.id
+    }) 
+    .then((obj) => {
+      res.status(201).json(obj)
+    })
+    .catch((error) => {
+      errorHandler(res,error)
+    }); 
+}
 
 async function read(req, res) {
   Dish.findAll().then((items) => {
@@ -93,4 +105,4 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readDishRatings };
+module.exports = { create, read, readOne, update, destroy, readDishRatings, readDishes };
