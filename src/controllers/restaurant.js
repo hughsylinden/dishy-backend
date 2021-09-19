@@ -43,7 +43,6 @@ async function readOne(req, res) {
 }
 
 async function readByYelpId(req, res) {
-  console.log(req.params.yelpId)
   Restaurant
   .findOne({where:{yelp_id: req.params.yelpId} })
   .then((obj) => {
