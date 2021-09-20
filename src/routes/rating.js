@@ -9,5 +9,6 @@ ratingRouter.get('/all', ratingController.readAll);
 ratingRouter.get('/:id', ratingController.readOne);
 ratingRouter.patch('/:id', ratingController.update);
 ratingRouter.delete('/:id', ratingController.destroy);
+ratingRouter.post('/search', ratingController.searchRating);
 
 module.exports = ratingRouter;

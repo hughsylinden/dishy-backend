@@ -10,6 +10,28 @@ async function create(req, res) {
       errorHandler(res,error)
     });
 }
+async function searchRating(req, res) {
+  const query = req.body.query;
+  Rating
+    .findAll({
+      include: [
+        {
+          model: Restaurant,
+          required: true
+        },
+        {
+          model: Dish,
+          where: {name:query}
+        },
+      ]
+    }) 
+    .then((obj) => {
+      res.status(201).json(obj)
+    })
+    .catch((error) => {
+      errorHandler(res,error)
+    }); 
+}
 
 async function read(req, res) {
   Rating.findAll().then((items) => {
@@ -76,4 +98,4 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readAll };
+module.exports = { create, read, readOne, update, destroy, readAll, searchRating };
