@@ -4,11 +4,20 @@ const errorHandler = require('../utils/errorHandler')
 async function create(req, res) {
   const data = req.body;
   Restaurant
-  .findOrCreate({where: {yelp_id: data.yelp_id, longitude: data.longitude, latitude: data.latitude, name:data.name}})
+  .findOrCreate({where: {
+    yelp_id: data.yelp_id, 
+    longitude: data.longitude, 
+    latitude: data.latitude, 
+    name:data.name, 
+    address1:data.address1,  
+    address2:data.address2 ,
+    city:data.city ,
+    zip_code:data.zip_code  }})
   .then((obj) => {
     res.status(201).json(obj)
   })
   .catch((error) => {
+    console.log(error)
     errorHandler(res,error)
   });
 }
