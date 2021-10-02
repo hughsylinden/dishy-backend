@@ -17,7 +17,6 @@ async function create(req, res) {
     res.status(201).json(obj)
   })
   .catch((error) => {
-    console.log(error)
     errorHandler(res,error)
   });
 }
