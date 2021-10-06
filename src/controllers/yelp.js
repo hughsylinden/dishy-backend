@@ -1,4 +1,4 @@
-const TOKEN = process.env.TOKEN;
+const TOKEN = "ovzH6flq_E7L-ALjU2hkTjMCqYa94jqra33tZrYHN10g89DbCA9SDnNSiKQkLhEqiPUKdf36q99wvUZ0DptKWa_WVkp2BAA_rA5QE_uIpdDLyeeZOxbIewjOml06YXYx";
 
 const fetch = require("node-fetch");
 
