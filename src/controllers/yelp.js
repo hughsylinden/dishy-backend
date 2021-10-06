@@ -1,4 +1,5 @@
 const TOKEN = process.env.TOKEN;
+
 const fetch = require("node-fetch");
 
 async function getRestaurantById (req, res){
