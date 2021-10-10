@@ -12,12 +12,6 @@ module.exports = (connection, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       private: true,
-      validate: {
-        len: [4, 32],
-      },
-    },
-    dob: {
-      type: DataTypes.DATE,
     },
     email: {
       type: DataTypes.STRING,

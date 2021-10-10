@@ -108,4 +108,21 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readUserRatings, readUserDishes };
+async function allAccess(req, res) {
+  res.status(200).send('Public Content.');
+}
+
+async function userBoard(req, res) {
+  res.status(200).send('User Content.');
+}
+
+async function adminBoard(req, res) {
+  res.status(200).send('Admin Content.');
+}
+
+async function moderatorBoard(req, res) {
+  res.status(200).send('Moderator Content.');
+}
+
+
+module.exports = { create, read, readOne, update, destroy, readUserRatings, readUserDishes, allAccess, userBoard, adminBoard, moderatorBoard };
