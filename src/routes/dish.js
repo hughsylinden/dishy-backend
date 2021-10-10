@@ -10,4 +10,5 @@ dishRouter.get('/:id/ratings', dishController.readDishRatings);
 dishRouter.patch('/:id', dishController.update);
 dishRouter.delete('/:id', dishController.destroy);
 
+
 module.exports = dishRouter;
