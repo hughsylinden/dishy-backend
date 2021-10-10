@@ -12,12 +12,12 @@ async function create(req, res) {
     address1:data.address1,  
     address2:data.address2 ,
     city:data.city ,
-    zip_code:data.zip_code  }})
+    zip_code:data.zip_code  }
+  })
   .then((obj) => {
     res.status(201).json(obj)
   })
   .catch((error) => {
-    console.log(error)
     errorHandler(res,error)
   });
 }
