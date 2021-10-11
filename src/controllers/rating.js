@@ -1,4 +1,4 @@
-const { Rating, Dish, Restaurant } = require('../models');
+const { Rating, Dish, Restaurant, User } = require('../models');
 const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
@@ -23,6 +23,10 @@ async function searchRating(req, res) {
           model: Dish,
           where: {name:query}
         },
+        {
+          model: User,
+          required: true
+        }
       ]
     }) 
     .then((ratings) => {
@@ -35,6 +39,7 @@ async function searchRating(req, res) {
             .includes(data.Restaurant.name)
         ) {
           obj = {
+            user: data.User.id,
             dish: data.Dish.name,
             name: data.Restaurant.name,
             coordinates: {
@@ -49,11 +54,13 @@ async function searchRating(req, res) {
             },
             comment: data.comment,
             scores: [data.rating],
+            users: [data.User.id]
           };
           array.push(obj);
         } else {
           const index = array.findIndex((i) => i.name === data.Restaurant.name);
           array[index].scores.push(data.rating);
+          array[index].users.push(data.User.id);
         }
       });
       res.status(201).json(array)
