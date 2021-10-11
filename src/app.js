@@ -6,7 +6,7 @@ const userRouter = require('./routes/user');
 const ratingRouter = require('./routes/rating');
 const yelpRouter = require('./routes/yelp');
 const authRouter = require('./routes/auth');
-//const { Role } = require('./models');
+const { Role } = require('./models');
 const cors = require('cors')
 
 const app = express();
@@ -28,7 +28,7 @@ app.use('/restaurants', yelpRouter);
 app.use('/auth', authRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-/* async function initial() {
+async function initial() {
   Role.create({
     name: 'user',
   });
@@ -42,7 +42,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   });
 }
 
-initial();  */
+initial();  
 
 
 module.exports = app;
