@@ -22,7 +22,6 @@ const setupDatabase = () => {
   const Restaurant = RestaurantModel(connection, sequelize);
   const User = UserModel(connection, sequelize);
   const Role = RoleModel(connection, sequelize);
-
   
   User.hasMany(Rating);
   Dish.hasMany(Rating);

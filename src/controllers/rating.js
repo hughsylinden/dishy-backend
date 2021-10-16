@@ -3,13 +3,29 @@ const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
   const data = req.body;
-  Rating
-    .create(data)
+  
+  const obj = await Rating.findOne({where: { DishId:data.DishId, UserId: data.UserId,  RestaurantId: data.RestaurantId }})
+
+  if(!obj){
+    Rating
+    .create(data) 
     .then((obj) => res.status(201).json(obj.dataValues))
     .catch((error) => {
-      errorHandler(res,error)
-    });
-}
+      console.log(error)
+    })
+    }
+    else{
+      Rating
+      .update({rating: data.rating}, {
+        where: {id: obj.dataValues.id}
+      }) 
+      .then((obj) => res.status(201).json(obj.dataValues))
+      .catch((error) => {
+        console.log(error)
+      })
+    }
+  }
+
 async function searchRating(req, res) {
   const query = req.body.query;
   Rating
