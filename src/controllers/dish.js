@@ -1,24 +1,10 @@
-const { Dish, Rating, Restaurant } = require('../models');
+const { Dish } = require('../models');
 const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
   const data = req.body;
   Dish
     .findOrCreate({where: {name: data.name}})   
-    .then((obj) => {
-      res.status(201).json(obj)
-    })
-    .catch((error) => {
-      errorHandler(res,error)
-    }); 
-}
-
-async function readDishes(req, res) {
-  Dish
-    .findAll({
-      include: Rating, Restaurant,
-      where: Rating.RestaurantId==Restaurant.id
-    }) 
     .then((obj) => {
       res.status(201).json(obj)
     })
@@ -52,24 +38,7 @@ async function readOne(req, res) {
   );
 }
 
-async function readDishRatings(req, res) {
-  Dish
-  .findByPk(req.params.id, { include: Rating } )
-  .then((obj) => {
-    if (!obj) {
-      res
-      .status(404)
-      .json({ error: `The ${Dish.name.toLowerCase()} could not be found.` })
-    } else {
-      res.status(200).json(obj.dataValues);
-    }
-  })
-  .catch((error) =>
-    res
-      .status(500)
-      .json(error)
-  );
-}
+
 
 async function update(req, res) {
   Dish
@@ -105,4 +74,40 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readDishRatings, readDishes };
+/* async function readDishes(req, res) {
+  Dish
+    .findAll({
+      include: Rating, Restaurant,
+      where: Rating.RestaurantId==Restaurant.id
+    }) 
+    .then((obj) => {
+      res.status(201).json(obj)
+    })
+    .catch((error) => {
+      errorHandler(res,error)
+    }); 
+} 
+} 
+
+async function readDishRatings(req, res) {
+  Dish
+  .findByPk(req.params.id, { include: Rating } )
+  .then((obj) => {
+    if (!obj) {
+      res
+      .status(404)
+      .json({ error: `The ${Dish.name.toLowerCase()} could not be found.` })
+    } else {
+      res.status(200).json(obj.dataValues);
+    }
+  })
+  .catch((error) =>
+    res
+      .status(500)
+      .json(error)
+  );
+}
+*/
+
+
+module.exports = { create, read, readOne, update, destroy };

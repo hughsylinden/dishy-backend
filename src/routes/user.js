@@ -21,12 +21,6 @@ userRouter.get(
 );
 
 userRouter.get(
-  '/mod',
-  [jwt.verifyToken, jwt.isModerator],
-  userController.moderatorBoard,
-);
-
-userRouter.get(
   '/admin',
   [jwt.verifyToken, jwt.isAdmin],
   userController.adminBoard,

@@ -1,4 +1,4 @@
-const { Restaurant, Rating } = require('../models');
+const { Restaurant } = require('../models');
 const errorHandler = require('../utils/errorHandler')
 
 async function create(req, res) {
@@ -22,12 +22,6 @@ async function create(req, res) {
   });
 }
 
-async function readAll(req, res) {
-  Restaurant.findAll().then((items) => {
-    res.status(200).json(items);
-  });
-} 
-
 async function read(req, res) {
   Restaurant.findAll().then((items) => {
     res.status(200).json(items);
@@ -37,40 +31,6 @@ async function read(req, res) {
 async function readOne(req, res) {
   Restaurant
   .findByPk(req.params.id, { })
-  .then((obj) => {
-    if (!obj) {
-      res
-      .status(404)
-      .json({ error: `The ${Restaurant.name.toLowerCase()} could not be found.` })
-    } else {
-      res.status(200).json(obj.dataValues);
-    }
-  })
-  .catch((error) =>
-    errorHandler(res,error)
-  );
-}
-
-async function readByYelpId(req, res) {
-  Restaurant
-  .findOne({where:{yelp_id: req.params.yelpId} })
-  .then((obj) => {
-    if (!obj) {
-      res
-      .status(404)
-      .json({ error: `The ${Restaurant.name.toLowerCase()} could not be found.` })
-    } else {
-      res.status(200).json(obj);
-    }
-  })
-  .catch((error) =>
-    errorHandler(res,error)
-  );
-}
-
-async function readRestaurantRatings(req, res) {
-  Restaurant
-  .findByPk(req.params.id, { include: Rating })
   .then((obj) => {
     if (!obj) {
       res
@@ -119,4 +79,46 @@ async function destroy(req, res) {
   );
 }
 
-module.exports = { create, read, readOne, update, destroy, readRestaurantRatings, readByYelpId, readAll };
+/*
+async function readAll(req, res) {
+  Restaurant.findAll().then((items) => {
+    res.status(200).json(items);
+  });
+} 
+
+async function readByYelpId(req, res) {
+  Restaurant
+  .findOne({where:{yelp_id: req.params.yelpId} })
+  .then((obj) => {
+    if (!obj) {
+      res
+      .status(404)
+      .json({ error: `The ${Restaurant.name.toLowerCase()} could not be found.` })
+    } else {
+      res.status(200).json(obj);
+    }
+  })
+  .catch((error) =>
+    errorHandler(res,error)
+  );
+}
+
+async function readRestaurantRatings(req, res) {
+  Restaurant
+  .findByPk(req.params.id, { include: Rating })
+  .then((obj) => {
+    if (!obj) {
+      res
+      .status(404)
+      .json({ error: `The ${Restaurant.name.toLowerCase()} could not be found.` })
+    } else {
+      res.status(200).json(obj.dataValues);
+    }
+  })
+  .catch((error) =>
+    errorHandler(res,error)
+  );
+}
+*/
+
+module.exports = { create, read, readOne, update, destroy };

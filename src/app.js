@@ -6,6 +6,7 @@ const ratingRouter = require('./routes/rating');
 const yelpRouter = require('./routes/yelp');
 const authRouter = require('./routes/auth');
 const cors = require('cors')
+//const { Role } = require('../src/models');
 
 const app = express();
 
@@ -38,6 +39,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   });
 }
 
-initial();    
- */
+initial();    */ 
+
 module.exports = app;
